@@ -17,6 +17,11 @@ try {
   console.log('stdout ', child.stdout);
   console.error('stderr ', child.stderr);
 
+  const child3 = spawnSync('python3', ['-V'], { encoding : 'utf8' });
+  console.error('error', child3.error);
+  console.log('stdout ', child3.stdout);
+  console.error('stderr ', child3.stderr);
+
   throw new Error('fail by default')
 } catch (error) {
   core.setFailed(error.message);
