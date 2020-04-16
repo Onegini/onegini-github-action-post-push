@@ -10,6 +10,14 @@ try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
+
+  const { spawnSync} = require('child_process');
+  const child = spawnSync('python', ['-V'], { encoding : 'utf8' });
+  console.error('error', child.error);
+  console.log('stdout ', child.stdout);
+  console.error('stderr ', child.stderr);
+
+  throw new Error('fail by default')
 } catch (error) {
   core.setFailed(error.message);
 }
